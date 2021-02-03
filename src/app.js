@@ -29,7 +29,17 @@ function renderCafe(doc) {
 }
 
 // getting data
+// db.collection("cafes")
+//   .get()
+//   .then((snapshot) => {
+//     snapshot.docs.forEach((doc) => {
+//       renderCafe(doc);
+//     });
+//   });
+
+// getting data where
 db.collection("cafes")
+  .where("city", "==", "manchester")
   .get()
   .then((snapshot) => {
     snapshot.docs.forEach((doc) => {
@@ -44,4 +54,7 @@ form.addEventListener("submit", (e) => {
     name: form.name.value,
     city: form.city.value,
   });
+
+  form.name.value = "";
+  form.city.value = "";
 });
